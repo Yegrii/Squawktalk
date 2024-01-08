@@ -1,0 +1,2 @@
+# Squawktalk
+SQL practice
