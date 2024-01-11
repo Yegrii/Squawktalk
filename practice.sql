@@ -6,7 +6,8 @@ SELECT
 FROM
 	salaries
 WHERE
-	job_title = 'ML Engineer';
+	job_title = 'ML Engineer'
+	AND year = 2023;
 
 
 /*
