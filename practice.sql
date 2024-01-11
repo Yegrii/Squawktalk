@@ -52,3 +52,17 @@ WHERE
 ORDER BY
 	salary_in_usd DESC
 LIMIT 5;
+
+/*
+Згенерувати .csv файл з таблицею даних всіх спеціалістів, які в 2023 році мали з/п більшу 
+за $100,000 і працювали в компаніях середнього розміру (company_size = 'M')
+*/
+
+SELECT
+	*
+FROM
+	salaries
+WHERE
+	salary_in_usd > 100000
+	AND
+	comp_size = 'M';
