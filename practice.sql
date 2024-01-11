@@ -7,7 +7,8 @@ FROM
 	salaries
 WHERE
 	job_title = 'ML Engineer';
-	
+
+
 /*
 Назвати країну (company_location), в якій зафіксована найменша з/п спеціаліста
 в сфері Data Scientist в 2023 році. 
@@ -23,3 +24,15 @@ WHERE
 ORDER BY
 	salary_in_usd
 LIMIT 1;
+
+
+--Вивести з/п українців (код країни UA), додати сортування за зростанням з/п
+
+SELECT
+	salary_in_usd
+FROM
+	salaries
+WHERE
+	emp_location = 'UA'
+ORDER BY
+	salary_in_usd;
