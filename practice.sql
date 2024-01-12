@@ -109,3 +109,13 @@ GROUP BY
 	year
 ORDER BY
 	year;
+	
+SELECT
+	year,
+	AVG(salary_in_usd) AS avg_salary
+FROM
+	salaries
+GROUP BY
+	year
+ORDER BY
+	year;
