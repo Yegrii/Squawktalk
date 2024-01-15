@@ -217,3 +217,89 @@ SELECT
 FROM
 	salaries;
 	
+/* 14#
+Дослідити всі колонки на наявність відсутніх значень, порівнявши кількість рядків 
+таблиці з кількістю значень відповідної колонки
+*/
+
+/* 15#
+Порахувати кількість працівників в таблиці, які в 2023 році працюють на 
+компанії розміру "М" і отримують з/п вищу за $100 000
+*/
+
+SELECT
+	COUNT(*) AS num_of_employees
+FROM
+	salaries
+WHERE
+	comp_size = 'M'
+	AND year = 2023
+	AND salary_in_usd > 100000;
+	
+/* 16#
+Вивести всіх співробітників, які в 2023 отримували з/п більшу за $300тис.
+*/
+
+SELECT
+	*
+FROM
+	salaries
+WHERE
+	year = 2023
+	AND salary_in_usd > 300000;
+	
+/* 17#
+Вивести всіх співробітників, які в 2023 отримували з/п більшу за $300тис. 
+та не працювали в великих компаніях.
+*/
+
+SELECT
+	*
+FROM
+	salaries
+WHERE
+	year = 2023
+	AND salary_in_usd > 300000
+	AND comp_size != 'L';
+	
+/* 18#
+Чи є співробітники, які працювали на Українську компанію повністю віддалено?
+*/
+
+SELECT
+	*
+FROM
+	salaries
+WHERE
+	comp_location = 'UA'
+	AND remote_ratio = 100;
+	
+/* 19#
+Вивести всіх співробітників, які в 2023 році працюючи в Німеччині 
+(company_location = 'DE') отримували з/п більшу за $100тис.
+*/
+
+SELECT
+	*
+FROM
+	salaries
+WHERE
+	comp_location = 'DE'
+	AND salary_in_usd > 100000
+	AND year = 2023;
+	
+/* 20#
+Доопрацювати попередній запит: Вивести з результатів тільки ТОП 5 співробітників за рівнем з/п.
+*/
+
+SELECT
+	*
+FROM
+	salaries
+WHERE
+	comp_location = 'DE'
+	AND salary_in_usd > 100000
+	AND year = 2023
+ORDER BY
+	salary_in_usd DESC
+LIMIT 5;
