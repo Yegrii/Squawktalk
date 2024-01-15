@@ -136,3 +136,21 @@ GROUP BY
 	exp_level
 ORDER BY
 	avg_salary DESC;
+	
+SELECT
+	CASE
+		WHEN exp_level = 'EX' THEN 'Executive'
+		WHEN exp_level = 'SE' THEN 'Senior'
+		WHEN exp_level = 'MI' THEN 'Middle'
+		ELSE 'Entry' END AS experience_level,
+	year,
+	AVG(salary_in_usd) AS avg_salary
+FROM
+	salaries
+WHERE
+	year = 2023
+GROUP BY
+	1, 2
+ORDER BY
+	avg_salary DESC;
+
