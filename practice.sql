@@ -154,3 +154,48 @@ GROUP BY
 ORDER BY
 	avg_salary DESC;
 
+/* 10#
+Вивести 5 найвищих заробітних плат в 2023 році для представників спеціальності ML Engineer.
+Заробітні плати перевести в гривні.
+*/
+
+SELECT
+	year,
+	job_title,
+	salary_in_usd * 38 AS salary_in_uah
+FROM
+	salaries
+WHERE
+	year = 2023
+	AND job_title = 'ML Engineer'
+ORDER BY
+	salary_in_uah DESC
+LIMIT 5;
+
+/* 11#
+Вивести Унікальні значення колонки remote_ratio, формат даних має бути 
+дробовим з двома знаками після коми, приклад: значення 50 має відображатись в форматі 0.50
+*/
+
+SELECT
+	DISTINCT ROUND(remote_ratio/100.0, 2) AS round_remote_ratio
+FROM
+	salaries
+ORDER BY
+	round_remote_ratio DESC;
+	
+/* 12#
+ Вивести дані таблиці, додавши колонку 'exp_level_full' з повною назвою рівнів досвіду
+ працівників відповідно до колонки exp_level. Визначення: Entry-level (EN), Mid-level (MI), 
+ Senior-level (SE), Executive-level (EX)
+*/
+
+SELECT
+	*,
+	CASE
+		WHEN exp_level = 'EX' THEN 'Executive-level'
+		WHEN exp_level = 'SE' THEN 'Senior-level'
+		WHEN exp_level = 'MI' THEN 'Mid-level'
+		ELSE 'Entry-level' END AS exp_level_full
+FROM
+	salaries;
