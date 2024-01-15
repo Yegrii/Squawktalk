@@ -199,3 +199,21 @@ SELECT
 		ELSE 'Entry-level' END AS exp_level_full
 FROM
 	salaries;
+	
+/* 13#
+Додатки колонку "salary_category', яка буде відображати різні категорії заробітних плат 
+відповідно до їх значення в колонці 'salary_in_usd'. Визначення: з/п менша за 
+20 000 - Категорія 1, з/п менша за 50 000 - Категорія 2, з/п менша за 
+100 000 - Категорія 3, з/п більша за 100 000 - Категорія 4
+*/
+
+SELECT
+	*,
+	CASE
+		WHEN salary_in_usd < 20000 THEN 'Category 1'
+		WHEN salary_in_usd < 50000 THEN 'Category 2'
+		WHEN salary_in_usd < 100000 THEN 'Category 3'
+		ELSE 'Category 4' END AS salary_category
+FROM
+	salaries;
+	
