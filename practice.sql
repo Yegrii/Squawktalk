@@ -119,3 +119,20 @@ GROUP BY
 	year
 ORDER BY
 	year;
+
+/* 9#
+ Вивести середню з/п (salary_in_usd) для 2023 року по кожному рівню досвіду працівників 
+ (окремими запитами, в кожному з яких впроваджено фільтр року та досвіду).
+*/
+
+SELECT
+	exp_level,
+	AVG(salary_in_usd) AS avg_salary
+FROM
+	salaries
+WHERE
+	year = 2023
+GROUP BY
+	exp_level
+ORDER BY
+	avg_salary DESC;
