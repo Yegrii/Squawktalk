@@ -303,3 +303,48 @@ WHERE
 ORDER BY
 	salary_in_usd DESC
 LIMIT 5;
+
+/* 21#
+Додати в попередню таблицю окрім спеціалістів з Німеччини спеціалістів з Канади (CA).
+*/
+
+SELECT
+	*
+FROM
+	salaries
+WHERE
+	comp_location IN ('DE', 'CA')
+	AND salary_in_usd > 100000
+	AND year = 2023
+ORDER BY
+	salary_in_usd DESC
+LIMIT 5;
+
+/* 22#
+Надати перелік країн, в яких в 2021 році спеціалісти "ML Engineer" та 
+"Data Scientist" отримувати з/п в діапазоні між $50тис і $100тис
+*/
+
+SELECT
+	comp_location AS company_location,
+	emp_location AS employee_location
+FROM
+	salaries
+WHERE
+	year = 2021
+	AND job_title IN ('ML Engineer', 'Data Scientist')
+	AND salary_in_usd BETWEEN 50000 AND 100000;
+	
+/* 23#
+Порахувати кількість спеціалістів, які працюючи в середніх компаніях 
+(company_size = M) та в великих компаніях (company_size = L) 
+працювали віддалено (remote_ratio=100 або remote_ratio=50).
+*/
+
+SELECT
+	COUNT(*) AS num_of_employees
+FROM
+	salaries
+WHERE
+	comp_size IN ('M', 'L')
+	AND remote_ratio IN (100, 50);
