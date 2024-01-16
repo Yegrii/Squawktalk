@@ -348,3 +348,14 @@ FROM
 WHERE
 	comp_size IN ('M', 'L')
 	AND remote_ratio IN (100, 50);
+	
+/* 24#
+Вивести кількість країн, які починаються на "С".
+*/
+
+SELECT
+	COUNT(*) AS country_count
+FROM
+	salaries
+WHERE
+	comp_location LIKE 'C%';
