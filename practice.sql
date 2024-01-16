@@ -359,3 +359,25 @@ FROM
 	salaries
 WHERE
 	comp_location LIKE 'C%';
+	
+/* 25#
+Вивести професії, назва яких не складається з трьох слів.
+*/
+
+
+/* 26#
+Для кожного року навести дані щодо середньої заробітної плати та кількості спеціалістів. 
+Результат експортувати в .csv файл, імпортувати файл в Power BI і 
+побудувати доречну візуалізацію отриманих даних.
+*/
+
+SELECT
+	year,
+	ROUND(AVG(salary_in_usd), 2) AS avg_salary_in_usd,
+	COUNT(*) AS num_of_employees
+FROM
+	salaries
+GROUP BY
+	year
+ORDER BY 
+	year;
