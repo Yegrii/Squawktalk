@@ -383,8 +383,66 @@ SELECT
 	ROUND(AVG(salary_in_usd), 2) AS avg_salary_in_usd,
 	COUNT(*) AS num_of_employees
 FROM
-	salarie
+	salaries
 GROUP BY
 	year
 ORDER BY 
 	year;
+	
+	
+----------------- practice
+
+SELECT
+	job_title,
+	exp_level,
+	COUNT(*) AS job_num,
+	ROUND(AVG(salary_in_usd * 37), 2) AS avg_salary_in_uah
+FROM
+	salaries
+GROUP BY
+	job_title, exp_level
+ORDER BY
+	exp_level DESC, avg_salary_in_uah DESC;
+	
+	
+SELECT
+	job_title,
+	COUNT(*) AS job_num,
+	ROUND(AVG(salary_in_usd * 37), 2) AS avg_salary_in_uah
+FROM
+	salaries
+WHERE
+	year = 2023
+GROUP BY
+	job_title
+HAVING COUNT(*) = 1
+ORDER BY
+	2;
+	
+	
+----------------- subquery
+
+SELECT
+	*
+FROM
+	salaries
+WHERE
+	salary_in_usd > 
+	(SELECT
+	 	AVG(salary_in_usd) 
+	 FROM
+	 	salaries);
+		
+
+SELECT
+	MIN(new.max_salary)
+FROM
+	(
+	SELECT
+	comp_location,
+	MAX(salary_in_usd) AS max_salary
+FROM
+	salaries
+GROUP BY
+	comp_location) AS new;
+
