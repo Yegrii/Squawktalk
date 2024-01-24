@@ -446,3 +446,54 @@ FROM
 GROUP BY
 	comp_location) AS new;
 
+/*
+	По кожній професії вивести різницю між середньою з.п. та максимальною з.п.
+	для усіх спеціалістів. 
+*/
+
+--1. Знайти максимальну зп
+--2. Вивести проф. та їх сереню зп
+--3. Результат
+
+-- Знаходимо максимальну зп
+SELECT
+	MAX(salary_in_usd)
+FROM
+	salaries;
+
+-- Знаходимо середню зп по кожній проф.
+SELECT
+	job_title,
+	AVG(salary_in_usd) AS avg_salary
+FROM
+	salaries
+GROUP BY
+	job_title;
+	
+-- Поєднуємо два запити
+
+SELECT
+	job_title,
+	AVG(salary_in_usd) -
+	(
+	SELECT MAX(salary_in_usd)
+	FROM salaries) AS diff
+FROM
+	salaries
+GROUP BY
+	job_title;
+	
+	
+/*
+	Вивести дані по співробітнику, який отримує другу по розміру зп в таблиці.
+*/
+
+SELECT
+	job_title,
+	salary_in_usd
+FROM
+	salaries
+ORDER BY
+	salary_in_usd DESC
+LIMIT 1
+OFFSET 1;
