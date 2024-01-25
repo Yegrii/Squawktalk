@@ -497,3 +497,4 @@ ORDER BY
 	salary_in_usd DESC
 LIMIT 1
 OFFSET 1;
+
