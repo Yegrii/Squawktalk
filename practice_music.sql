@@ -76,7 +76,31 @@ LIMIT 10;
 Надати інформацію про клієнтів, які придбали музичні треки в межах 4 різних жанрів
 */
 	
-	
+SELECT 
+	c.CustomerId ,
+	c.FirstName ,
+	c.LastName ,
+	COUNT(DISTINCT g.GenreId) AS num_genres
+FROM 
+	InvoiceLine il 
+LEFT JOIN
+	Track t ON
+	il.TrackId = t.TrackId 
+LEFT JOIN 
+	Genre g ON
+	t.GenreId = g.GenreId 
+LEFT JOIN 
+	Invoice i ON
+	il.InvoiceId = i.InvoiceId 
+LEFT JOIN 
+	Customer c ON
+	i.CustomerId = c.CustomerId 
+GROUP BY 
+	c.CustomerId , c.FirstName , c.LastName 
+HAVING 
+	COUNT(DISTINCT g.GenreId) >= 4
+ORDER BY 
+	num_genres DESC ;
 	
 /* 4#
 Сформувати перелік клієнтів, які станом на останній місяць продажів не придбали нічого протягом 1 місяця, 2 місяців, 3 місяців
