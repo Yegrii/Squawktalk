@@ -1,4 +1,4 @@
-/*
+
 SELECT 
 	*
 FROM 
@@ -19,13 +19,31 @@ FROM
 	Track t 
 LIMIT 10;
 
-*/
+SELECT 
+	*
+FROM 
+	Album a 
+LIMIT 10;
 
+SELECT 
+	*
+FROM 
+	Artist a2
+LIMIT 10;
+
+
+SELECT 
+	*
+FROM 
+	Track t 
+JOIN
+	Album a ON
+	t.AlbumId = a.AlbumId 
 /* 1#
  Порівняти всіх музичних виконавчів за кількістю проданих музичних треків та загальною сумою продажу
 */
 
-
+/*
 SELECT 
 	a.Name ,
 	SUM(il.Quantity) AS sold_quantity,
@@ -46,11 +64,12 @@ GROUP BY
 ORDER BY 
 	sold_quantity DESC, sold_in_usd DESC  
 LIMIT 10;
-
+*/
 
 /* 2#
 Сформувати топ-3 співробітника за рівнем продажів для кожного року
 */
+
 
 
 /* 3#
