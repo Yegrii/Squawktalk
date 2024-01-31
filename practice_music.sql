@@ -98,7 +98,7 @@ LEFT JOIN
 GROUP BY 
 	c.CustomerId , c.FirstName , c.LastName 
 HAVING 
-	COUNT(DISTINCT g.GenreId) >= 4
+	COUNT(DISTINCT g.GenreId) >= 4s
 ORDER BY 
 	num_genres DESC ;
 	
